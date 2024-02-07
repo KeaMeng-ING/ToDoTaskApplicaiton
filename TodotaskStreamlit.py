@@ -39,7 +39,7 @@ class LinkedList:
             tasks.append(current.data)
             current = current.next
 
-        return tasks
+        return tasks[::-1]
 
 # Workaround for maintaining session state across reruns
 class _SessionState:
@@ -50,8 +50,8 @@ class _SessionState:
         return self._task_list
 
 def get_session_state():
-    if not hasattr(st, '_session_state'):
-        st._session_state = _SessionState()
+    if not hasattr(st, '_session_state'): # Create a new session state
+        st._session_state = _SessionState() # Assign the session state as an attribute of Streamlit
     return st._session_state
 
 # Create a Streamlit app
